@@ -1,6 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/auth/authController');
 const Joi = require('joi');
+const verifyToken = require('../middleware/auth');
 const validator = require('express-joi-validation').createValidator({});
 
 const registerSchema = Joi.object({
@@ -26,5 +27,9 @@ router.post(
   validator.body(loginSchema),
   authController.controller.postLogin
 );
+
+router.get('/test', verifyToken, (req, res) => {
+  res.send('test');
+});
 
 module.exports = router;
