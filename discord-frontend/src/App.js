@@ -9,17 +9,24 @@ import './App.css';
 import Dashboard from './Dashboard/Dashboard';
 import LoginPage from './authPages/LoginPage/LoginPage';
 import RegisterPage from './authPages/RegisterPage/RegisterPage';
+import AlertNotification from './shared/components/AlertNotification';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace={true} />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="*"
+            element={<Navigate to="/dashboard" replace={true} />}
+          />
+        </Routes>
+      </Router>
+      <AlertNotification />
+    </>
   );
 }
 
