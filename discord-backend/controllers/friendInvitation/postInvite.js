@@ -1,5 +1,6 @@
 const User = require('../../models/user');
 const FriendInvitation = require('../../models/friendInvitation');
+const friendsUpdate = require('../../socketHandlers/updates/friends');
 
 const postInvite = async (req, res) => {
   const { targetMailAddress } = req.body;
@@ -49,6 +50,9 @@ const postInvite = async (req, res) => {
   });
 
   // if invitation has already been successfully created we would like to update friends invitations
+
+  // send the invitations
+  friendsUpdate.updateFriendsPendingInvitations(targetUser._id.toString());
 
   return res.status(201).send('Invitation has been sent');
 };
