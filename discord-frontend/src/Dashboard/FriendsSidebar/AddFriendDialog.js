@@ -22,9 +22,12 @@ const AddFriendDialog = ({
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleSendInvitation = () => {
-    sendFriendInvitation({
-      mail,
-    });
+    sendFriendInvitation(
+      {
+        targetMailAddress: mail,
+      },
+      handleCloseDialog
+    );
   };
 
   const handleCloseDialog = () => {
