@@ -10,6 +10,7 @@ export const getAction = (dispatch) => {
     login: (userDetails, navigate) => dispatch(login(userDetails, navigate)),
     register: (userDetails, navigate) =>
       dispatch(register(userDetails, navigate)),
+    setUserDetails: (userDetails) => dispatch(setUserDetails(userDetails)),
   };
 };
 
@@ -24,6 +25,7 @@ const login = (userDetails, navigate) => {
   return async (dispatch) => {
     const response = await api.login(userDetails);
     if (response.error) {
+      console.log(response);
       dispatch(openAlertMessage(response.err.response.data));
     } else {
       const { userDetails } = response.data;
@@ -38,6 +40,7 @@ const register = (userDetails, navigate) => {
   return async (dispatch) => {
     const response = await api.register(userDetails);
     if (response.error) {
+      console.log(response);
       dispatch(openAlertMessage(response.err.response.data));
     } else {
       const { userDetails } = response.data;
