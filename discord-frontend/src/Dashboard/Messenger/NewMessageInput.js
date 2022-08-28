@@ -37,7 +37,7 @@ const NewMessageInput = ({ chosenChatDetails }) => {
 
   const handleSendMessage = () => {
     if (message.length > 0) {
-      sendDirectMessage.apply({
+      sendDirectMessage({
         receiverUserId: chosenChatDetails.id,
         content: message,
       });

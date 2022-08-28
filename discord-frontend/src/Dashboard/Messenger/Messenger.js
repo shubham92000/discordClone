@@ -17,7 +17,7 @@ const Messenger = ({ chosenChatDetails }) => {
       {!chosenChatDetails ? (
         <WelcomeMessage chosenChatDetails={chosenChatDetails} />
       ) : (
-        <MessengerContent />
+        <MessengerContent chosenChatDetails={chosenChatDetails} />
       )}
     </MainContainer>
   );
