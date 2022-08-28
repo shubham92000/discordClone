@@ -30,6 +30,8 @@ const postAccept = async (req, res) => {
     friendsUpdates.updateFriendsPendingInvitations(receiverId.toString());
 
     // update list of friends if users are online by sockets
+    friendsUpdates.updateFriends(senderId.toString());
+    friendsUpdates.updateFriends(receiverId.toString());
 
     return res.status(200).send('Invitation successfully accepted');
   } catch (err) {

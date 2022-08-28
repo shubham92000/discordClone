@@ -13,6 +13,7 @@ export const getActions = (dispatch) => {
       dispatch(sendFriendInvitation(data, closeDialogHandler)),
     acceptFriendInvitation: (data) => dispatch(acceptFriendInvitation(data)),
     rejectFriendInvitation: (data) => dispatch(rejectFriendInvitation(data)),
+    setFriends: (data) => dispatch(setFriends(data)),
   };
 };
 
@@ -54,5 +55,12 @@ const rejectFriendInvitation = (data) => {
     } else {
       dispatch(openAlertMessage('Invitation rejected!'));
     }
+  };
+};
+
+export const setFriends = (friends) => {
+  return {
+    type: friendsAction.SET_FRIENDS,
+    friends,
   };
 };
