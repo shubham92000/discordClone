@@ -15,8 +15,10 @@ const Wrapper = styled('div')({
   display: 'flex',
 });
 
-const Dashboard = ({ setUserDetails }) => {
+const Dashboard = ({ auth, setUserDetails }) => {
   useEffect(() => {
+    console.log('auth');
+    console.log(auth);
     const userDetails = localStorage.getItem('user');
     if (!userDetails) {
       logout();
@@ -25,6 +27,14 @@ const Dashboard = ({ setUserDetails }) => {
       connectWithSocketServer(JSON.parse(userDetails));
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (auth === null || auth.userDetails === null) {
+  //     logout();
+  //   } else {
+  //     connectWithSocketServer(JSON.parse(userDetails));
+  //   }
+  // }, [auth]);
 
   return (
     <Wrapper>
@@ -36,10 +46,16 @@ const Dashboard = ({ setUserDetails }) => {
   );
 };
 
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  };
+};
+
 const mapActionsToProps = (dispatch) => {
   return {
     ...getAction(dispatch),
   };
 };
 
-export default connect(null, mapActionsToProps)(Dashboard);
+export default connect(mapStateToProps, mapActionsToProps)(Dashboard);

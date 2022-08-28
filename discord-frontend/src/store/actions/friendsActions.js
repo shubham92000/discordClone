@@ -64,3 +64,10 @@ export const setFriends = (friends) => {
     friends,
   };
 };
+
+export const setOnlineUsers = (onlineUsers) => {
+  return {
+    type: friendsAction.SET_ONLINE_USERS,
+    onlineUsers,
+  };
+};
