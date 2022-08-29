@@ -71,8 +71,6 @@ const addNewActiveRoom = (userId, socketId) => {
   };
 
   activeRooms = [...activeRooms, newActiveRoom];
-  console.log('new active rooms: ');
-  console.log(activeRooms);
   return newActiveRoom;
 };
 
