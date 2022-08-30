@@ -5,6 +5,7 @@ import {
 } from '../store/actions/roomActions';
 import * as socketConnection from './socketConnection';
 import store from '../store/store';
+import { openAlertMessage } from '../store/actions/alertActions';
 
 export const createNewRoom = () => {
   store.dispatch(setOpenRoom(true, true));
@@ -29,6 +30,11 @@ export const updateActiveRooms = (data) => {
     });
   });
 
-  console.log(rooms);
   store.dispatch(setActiveRooms(rooms));
+};
+
+export const joinRoom = (roomId) => {
+  store.dispatch(setRoomDetails({ roomId }));
+  store.dispatch(setOpenRoom(false, true));
+  socketConnection.joinRoom({ roomId });
 };
