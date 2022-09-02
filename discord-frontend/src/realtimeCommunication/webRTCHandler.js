@@ -1,5 +1,5 @@
 import store from '../store/store';
-import { setLocalStream } from '../store/actions/roomActions';
+import { setLocalStream, setRemoteStreams } from '../store/actions/roomActions';
 import Peer from 'simple-peer';
 import * as socketConnection from './socketConnection';
 
@@ -73,6 +73,8 @@ export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
     // add new remote stream  to our server store
     console.log('remote stream came from other user');
     console.log('direct has been established');
+    remoteStream.connUserSocketId = connUserSocketId;
+    addNewRemoteStream(remoteStream);
   });
 };
 
@@ -81,4 +83,11 @@ export const handleSignalingData = (data) => {
   if (peers[connUserSocketId]) {
     peers[connUserSocketId].signal(signal);
   }
+};
+
+const addNewRemoteStream = (remoteStream) => {
+  const remoteStreams = store.getState().room.remoteStreams;
+  const newRemoteStreams = [...remoteStreams, remoteStream];
+
+  store.dispatch(setRemoteStreams(newRemoteStreams));
 };
